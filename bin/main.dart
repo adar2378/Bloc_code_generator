@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:args/args.dart';
 import 'package:bloc_code_generator/bloc_code_generator.dart' as generator;
+import "package:path/path.dart" show dirname;
 
 main(List<String> arguments) {
   bool foundCommentSwitch = false;
@@ -35,10 +36,13 @@ ${argParser.usage}
       '${blocName.substring(0, 1).toLowerCase() + blocName.substring(1)}.dart';
   final savingPath = path.isEmpty ? "$fileName" : "$path\\$fileName";
   String readingPath;
+  var current = dirname(Platform.script.toFilePath().toString()).substring(
+      0, dirname(Platform.script.toFilePath().toString()).length - 3);
+
   if (foundCommentSwitch) {
-    readingPath = "samples/sample_code.txt";
+    readingPath = current + "samples/sample_code.txt";
   } else if (!foundCommentSwitch) {
-    readingPath = "samples/sample_code no_comment.txt";
+    readingPath = current + "samples/sample_code_no_comment.txt";
   }
   File(readingPath).readAsString().then((String contents) {
     try {
