@@ -40,9 +40,9 @@ ${argParser.usage}
       0, dirname(Platform.script.toFilePath().toString()).length - 3);
 
   if (foundCommentSwitch) {
-    readingPath = current + "samples/sample_code.txt";
+    readingPath = current + "samples\\sample_code.txt";
   } else if (!foundCommentSwitch) {
-    readingPath = current + "samples/sample_code_no_comment.txt";
+    readingPath = current + "samples\\sample_code_no_comment.txt";
   }
   File(readingPath).readAsString().then((String contents) {
     try {
